@@ -1,24 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
 
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { StateProvider } from './providers/stateContext';
+import { initialState, reducer } from './providers/mainReducer';
+import LocalStorageConmtainer from './providers/LocalStorageConmtainer';
+import Roots from './navigators/Roots';
+
 function App() {
+  const client = new QueryClient();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={client}>
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <LocalStorageConmtainer>
+          <Roots />
+        </LocalStorageConmtainer>
+      </StateProvider>
+    </QueryClientProvider>
   );
 }
 
