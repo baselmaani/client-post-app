@@ -9,21 +9,17 @@ import { useState } from 'react';
 
 const Roots = () => {
   const [isLoggedin, setIsLoggedin] = useState(false);
-  const logout = () => {
-    localStorage.removeItem('token');
-    setIsLoggedin(true);
-  };
+
   return (
     <div className='App'>
       <>
         <Routes>
+          <Route path='/login' element={<Login />} />
           <Route path='/post' element={<Home />} />
 
-          <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/post/userspost' element={<UserPost />} />
         </Routes>
-        <button onClick={logout}>Log Out</button>
       </>
     </div>
   );

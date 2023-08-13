@@ -18,27 +18,34 @@ const Login = () => {
   const [{ user }] = useStateValue();
 
   return (
-    <>
-      <h1>Log in </h1>
+    <div className=' grid h-screen place-items-center grid-cols-1'>
       {user !== null ? (
         <Navigate to='/post' replace={true} />
       ) : (
         <Navigate to='/login' replace={true} />
       )}
-      <input
-        type='text'
-        placeholder='email'
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type='password'
-        placeholder='password'
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Log in</button>
+      <div className='bg-gray-200 place-content-center  grid  gap-8 p-20 rounded-2xl shadow-md drop-shadow-md '>
+        <input
+          className='input '
+          type='text'
+          placeholder='email'
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          className=' input'
+          type='password'
+          placeholder='password'
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className='btn' onClick={handleLogin}>
+          Log in
+        </button>
 
-      <Link to={'/signup'}>signup</Link>
-    </>
+        <Link to={'/signup'} className='btn'>
+          signup
+        </Link>
+      </div>
+    </div>
   );
 };
 
